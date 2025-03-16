@@ -1,0 +1,15 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: x6-notification
+  rabbitmq:
+    addresses:
+      - localhost:5672
+    username: ${RMQ_USERNAME:guest}
+    password: ${RMQ_PASSWORD}
+    virtual-host: x6notificationHost
+app:
+  rabbitmq:
+    queue: x6notification-queue
+    exchange: x6notification-exchange
