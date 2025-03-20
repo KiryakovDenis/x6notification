@@ -11,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 @Data
 @AllArgsConstructor
 @Builder
-public class OrderProduct implements Serializable {
+public class OrderProduct  {
     private Long id;
     private Long productId;
     private Long amountProduct;

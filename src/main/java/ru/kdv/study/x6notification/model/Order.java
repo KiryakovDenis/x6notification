@@ -4,8 +4,6 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -15,7 +13,7 @@ import java.util.StringJoiner;
 @AllArgsConstructor
 @Builder
 @Getter
-public class Order implements Serializable {
+public class Order  {
     private Long id;
     private String orderNumber;
     private LocalDate orderDate;
@@ -27,7 +25,7 @@ public class Order implements Serializable {
     @Override
     public String toString() {
 
-        String result = String.format("Order: {id = %d, orderNumber = %s, orderDate = %s, userId = %d, createDate = %s, orderPosition[${OrderPositionList}]}",
+        String result = String.format("Order: {id = %d,\norderNumber = %s,\norderDate = %s,\nuserId = %d,\ncreateDate = %s,\norderPosition[,\n${OrderPositionList},\n]}",
                 this.id,
                 this.orderNumber,
                 this.orderDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy")),
@@ -38,15 +36,15 @@ public class Order implements Serializable {
 
 
         if (this.orderPositionList != null && !this.orderPositionList.isEmpty()) {
-            StringJoiner stringJoiner = new StringJoiner(", ");
+            StringJoiner stringJoiner = new StringJoiner(",\n");
             orderPositionList.stream()
                     .map(OrderProduct::toString)
                     .toList()
                     .forEach(stringJoiner::add);
 
-            result.replace("${OrderPositionList}", stringJoiner.toString());
+            result = result.replace("${OrderPositionList}", stringJoiner.toString());
         } else {
-            result.replace("${OrderPositionList}", "");
+            result =result.replace("${OrderPositionList}", "");
         };
         return result;
     }
