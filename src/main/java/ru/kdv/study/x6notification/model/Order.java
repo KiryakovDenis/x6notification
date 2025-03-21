@@ -41,7 +41,9 @@ public class Order  {
                     .forEach(stringJoiner::add);
 
             result = result.replace("${OrderPositionList}", stringJoiner.toString());
-        };
+        } else {
+            result = result.replace("${OrderPositionList}", "");
+        }
 
         return result;
     }
