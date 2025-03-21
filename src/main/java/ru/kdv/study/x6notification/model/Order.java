@@ -33,8 +33,6 @@ public class Order  {
                 createDate.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm:ss"))
         );
 
-
-
         if (this.orderPositionList != null && !this.orderPositionList.isEmpty()) {
             StringJoiner stringJoiner = new StringJoiner(",\n");
             orderPositionList.stream()
@@ -43,9 +41,8 @@ public class Order  {
                     .forEach(stringJoiner::add);
 
             result = result.replace("${OrderPositionList}", stringJoiner.toString());
-        } else {
-            result =result.replace("${OrderPositionList}", "");
         };
+
         return result;
     }
 }
